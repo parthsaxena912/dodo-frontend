@@ -1,0 +1,32 @@
+<div class="admin-concerns-container">
+  <h2>📩 Raised Concerns</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Category</th>
+        <th>Subject</th>
+        <th>Message</th>
+        <th>Status</th>
+        <th>Update</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let concern of concerns">
+        <td>{{ concern.id }}</td>
+        <td>{{ concern.username }}</td>
+        <td>{{ concern.category }}</td>
+        <td>{{ concern.subject }}</td>
+        <td>{{ concern.message }}</td>
+        <td>{{ concern.status }}</td>
+        <td>
+          <select [(ngModel)]="concern.status" (ngModelChange)="updateStatus(concern.id, $event)">
+            <option value="Pending">Pending</option>
+            <option value="Resolved">Resolved</option>
+          </select>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

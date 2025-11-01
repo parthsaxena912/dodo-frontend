@@ -1,0 +1,29 @@
+<div class="container mt-4">
+  <h2>Raised Concerns</h2>
+  <table class="table table-bordered mt-3">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>User Email</th>
+        <th>Subject</th>
+        <th>Message</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of concerns">
+        <td>{{ c.id }}</td>
+        <td>{{ c.userEmail }}</td>
+        <td>{{ c.subject }}</td>
+        <td>{{ c.message }}</td>
+        <td>{{ c.status }}</td>
+        <td>
+          <button class="btn btn-success btn-sm me-1" (click)="updateStatus(c.id, 'Resolved')">Resolve</button>
+          <button class="btn btn-danger btn-sm" (click)="updateStatus(c.id, 'Rejected')">Reject</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+

@@ -1,0 +1,25 @@
+<div class="user-container">
+  <h2>Apply for Insurance</h2>
+  <form (ngSubmit)="apply()">
+    <input type="text" [(ngModel)]="insuranceType" name="insuranceType" placeholder="Enter Insurance Type" required />
+    <button type="submit">Apply</button>
+  </form>
+  <p class="message">{{ message }}</p>
+
+  <h3>Your Applications</h3>
+  <table *ngIf="userApplications.length > 0">
+    <tr>
+      <th>ID</th>
+      <th>Type</th>
+      <th>Status</th>
+      <th>Applied At</th>
+    </tr>
+    <tr *ngFor="let app of userApplications">
+      <td>{{ app.id }}</td>
+      <td>{{ app.insuranceType }}</td>
+      <td>{{ app.status }}</td>
+      <td>{{ app.appliedAt | date:'short' }}</td>
+    </tr>
+  </table>
+</div>
+

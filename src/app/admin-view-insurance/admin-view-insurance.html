@@ -1,0 +1,24 @@
+<div class="admin-container">
+  <h2>All Insurance Applications</h2>
+  <table *ngIf="applications.length > 0">
+    <tr>
+      <th>ID</th>
+      <th>User ID</th>
+      <th>Type</th>
+      <th>Status</th>
+      <th>Applied At</th>
+      <th>Action</th>
+    </tr>
+    <tr *ngFor="let app of applications">
+      <td>{{ app.id }}</td>
+      <td>{{ app.userId }}</td>
+      <td>{{ app.insuranceType }}</td>
+      <td>{{ app.status }}</td>
+      <td>{{ app.appliedAt | date:'short' }}</td>
+      <td>
+        <button (click)="updateStatus(app.id!, 'Approved')">Approve</button>
+        <button (click)="updateStatus(app.id!, 'Rejected')">Reject</button>
+      </td>
+    </tr>
+  </table>
+</div>

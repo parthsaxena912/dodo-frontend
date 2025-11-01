@@ -1,0 +1,39 @@
+<div class="analytics-container">
+  <h2>📊 Pension Analytics Dashboard</h2>
+
+  <div *ngIf="loading" class="loading">Loading analytics...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <div *ngIf="analytics" class="analytics-grid">
+    <div class="card total">
+      <h3>Total Pension Paid</h3>
+      <p>₹{{ analytics.totalPensionPaid | number }}</p>
+    </div>
+
+    <div class="card paid">
+      <h3>Pensioners Paid</h3>
+      <p>{{ analytics.pensionersPaid }}</p>
+    </div>
+
+    <div class="card avg">
+      <h3>Average Pension</h3>
+      <p>₹{{ analytics.averagePension | number }}</p>
+    </div>
+
+    <div class="card remaining">
+      <h3>Remaining Pensioners</h3>
+      <p>{{ analytics.remainingPensioners }}</p>
+    </div>
+  </div>
+
+  <div class="chart-section" *ngIf="analytics">
+    <canvas baseChart
+      [data]="barChartData"
+      [options]="barChartOptions"
+      chartType="bar">
+    </canvas>
+  </div>
+
+  <button class="refresh-btn" (click)="loadAnalytics()">🔄 Refresh</button>
+</div>
+  

@@ -1,0 +1,30 @@
+<div class="container mt-4">
+  <h2>Admin Dashboard</h2>
+  <button class="btn btn-primary mb-3" (click)="loadAllPensions()">Load Pension Records</button>
+
+  <table class="table table-bordered" *ngIf="pensions.length > 0">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Amount</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Employee ID</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of pensions">
+        <td>{{ p.id }}</td>
+        <td>{{ p.pensionAmount }}</td>
+        <td>{{ p.paymentDate }}</td>
+        <td>{{ p.status }}</td>
+        <td>{{ p.employee?.id }}</td>
+        <td>
+          <button class="btn btn-warning btn-sm" (click)="editPension(p)">Edit</button>
+          <button class="btn btn-danger btn-sm" (click)="deletePension(p.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
