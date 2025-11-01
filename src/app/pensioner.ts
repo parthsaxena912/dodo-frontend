@@ -18,7 +18,7 @@ export interface Pensioner {
   providedIn: 'root',
 })
 export class PensionerService {
-  baseUrl = environment.apiUrl;
+  private baseUrl = environment.apiUrl + '/pensioners';
 
   constructor(private http: HttpClient) {}
 
