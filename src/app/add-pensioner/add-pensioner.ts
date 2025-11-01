@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { environment } from '../../environments/environments.prod';
 
 @Component({
   selector: 'app-add-pensioner',
@@ -67,7 +68,7 @@ export class AddPensionerComponent {
   constructor(private http: HttpClient) {}
 
   addPensioner() {
-    this.http.post('http://localhost:8080/api/pensioners', this.pensioner).subscribe({
+    this.http.post(`${environment.apiUrl}/pensioners`, this.pensioner).subscribe({
       next: (res) => {
         alert('Pensioner added successfully!');
         this.pensioner = {
