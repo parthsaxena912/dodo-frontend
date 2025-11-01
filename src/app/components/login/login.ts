@@ -43,7 +43,10 @@ import { CommonModule } from '@angular/common';
         </form>
 
         <div class="extra-links">
-          <p>Don’t have an account? <a routerLink="/register">Register here</a></p>
+          <p>
+            Don’t have an account?
+            <a routerLink="/register">Register here</a>
+          </p>
         </div>
       </div>
     </div>
@@ -151,13 +154,20 @@ export class LoginComponent {
   constructor(private http: HttpClient, private router: Router) {}
 
   login() {
-    const loginData = { username: this.username, password: this.password };
+    const loginData = {
+      username: this.username,
+      password: this.password,
+    };
 
     this.http
-      .post('http://localhost:8080/api/users/login', loginData, { responseType: 'text' })
+      .post('https://pesnionportal-production.up.railway.app/api/users/login', loginData, {
+        responseType: 'text',
+        withCredentials: true,
+      })
       .subscribe({
         next: (response) => {
           const role = response.trim();
+
           if (role === 'ADMIN') {
             this.router.navigate(['/admin'], { queryParams: { user: this.username } });
           } else if (role === 'USER') {
