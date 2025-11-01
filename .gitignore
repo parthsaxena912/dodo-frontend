@@ -42,3 +42,6 @@ testem.log
 Thumbs.db
 .vercel
 node_modules
+
+src/assets/abc.jpg
+src/assets/picture.png
