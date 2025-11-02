@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PensionService } from '../services/pension';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { PensionService } from '../services/pension';
 
 @Component({
   selector: 'app-view-pension',
@@ -100,27 +100,27 @@ import { Router } from '@angular/router';
 export class ViewPensionComponent implements OnInit {
   pensioners: any[] = [];
 
-  // ✅ Inject Router properly
   constructor(private pensionService: PensionService, private router: Router) {}
 
   ngOnInit(): void {
     this.loadPensioners();
   }
 
-  // ✅ Navigate to Edit Pensioner component
-  editPensioner(id: number) {
-    // Assuming your route is like: /edit-pensioner/:id
-    this.router.navigate(['/edit-pensioner', id]);
-  }
-
+  // ✅ Load all pensioners
   loadPensioners() {
     this.pensionService.getAllPensions().subscribe({
       next: (data) => {
         this.pensioners = data;
+        console.log('Loaded pensioners:', data);
       },
       error: (err) => {
         console.error('Error fetching pensioners:', err);
       },
     });
+  }
+
+  // ✅ Navigate to edit page
+  editPensioner(id: number) {
+    this.router.navigate(['/edit-pensioner', id]);
   }
 }
