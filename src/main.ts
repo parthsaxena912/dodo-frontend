@@ -21,6 +21,7 @@ import { AnalyticsComponent } from './app/admin/analytics/analytics';
 import { UserApplyInsuranceComponent } from './app/user-apply-insurance/user-apply-insurance';
 import { AdminViewInsuranceComponent } from './app/admin-view-insurance/admin-view-insurance';
 import { PaymentComponent } from './app/payment/payment';
+import { ViewPensionerCorrectComponent } from './app/viewpensionercorrect/viewpensionercorrect';
 
 // Define routes
 const routes: Routes = [
@@ -41,6 +42,7 @@ const routes: Routes = [
   { path: 'user/apply-insurance', component: UserApplyInsuranceComponent },
   { path: 'admin/insurance', component: AdminViewInsuranceComponent },
   { path: 'admin/payment', component: PaymentComponent },
+  { path: 'view-pensionercorrect', component: ViewPensionerCorrectComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' }, // default route
 ];
 

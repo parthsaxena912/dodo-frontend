@@ -330,7 +330,7 @@ export class AdminDashboardComponent {
     this.router.navigate(['/add-pensioner']);
   }
   updatePensioner() {
-    this.router.navigate(['/view-pension']);
+    this.router.navigate(['/view-pensionercorrect']);
   }
   deletePensioner() {
     this.actionMessage = 'Opening Delete Pensioner options...';
