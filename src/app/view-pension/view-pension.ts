@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { PensionService } from '../services/pension';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-view-pension',
@@ -16,7 +16,7 @@ import { PensionService } from '../services/pension';
           <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Aadhar Number</th>
+            <th>Aadhaar Number</th>
             <th>Bank</th>
             <th>Account</th>
             <th>Pension Amount</th>
@@ -27,14 +27,10 @@ import { PensionService } from '../services/pension';
           <tr *ngFor="let p of pensioners">
             <td>{{ p.id }}</td>
             <td>{{ p.name }}</td>
-            <td>
-              {{
-                p.displayAadharNumber || p.aadharNumber || p.pensionRecord?.aadharNumber || 'N/A'
-              }}
-            </td>
+            <td>{{ p.aadhaarNumber }}</td>
             <td>{{ p.bankName }}</td>
-            <td>{{ p.accountNumber || 'N/A' }}</td>
-            <td>{{ p.pensionRecord?.pensionAmount }}</td>
+            <td>{{ p.accountNumber }}</td>
+            <td>{{ p.pensionAmount }}</td>
             <td>
               <button (click)="editPensioner(p.id)">✏️ Edit</button>
             </td>
@@ -100,15 +96,18 @@ import { PensionService } from '../services/pension';
 export class ViewPensionComponent implements OnInit {
   pensioners: any[] = [];
 
-  constructor(private pensionService: PensionService, private router: Router) {}
+  // ✅ Direct Backend URL (NO SERVICE)
+  private apiUrl = 'https://pesnionportal-production.up.railway.app/api/pensioners';
+
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
     this.loadPensioners();
   }
 
-  // ✅ Load all pensioners
+  // ✅ Direct API call
   loadPensioners() {
-    this.pensionService.getAllPensions().subscribe({
+    this.http.get<any[]>(this.apiUrl).subscribe({
       next: (data) => {
         this.pensioners = data;
         console.log('Loaded pensioners:', data);
